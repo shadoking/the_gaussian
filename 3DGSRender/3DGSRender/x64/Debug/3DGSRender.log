@@ -1,90 +1,887 @@
-﻿  Compiling CUDA source file kernel.cu...
+﻿  Compiling CUDA source file forward.cu...
   
-  D:\JNProject\Code\3DGS\the_gaussian\3DGSRender>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "D:\VisualStudio\VC\Tools\MSVC\14.39.33519\bin\HostX64\x64" -x cu   -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\include"  -G   --keep-dir 3DGSRender\x64\Debug  -maxrregcount=0  --machine 64 --compile -cudart static  -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -DBOOST_USE_WINDOWS_H -DNOMINMAX -D_CRT_SECURE_NO_DEPRECATE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Fd3DGSRender\x64\Debug\vc143.pdb /FS /Zi /RTC1 /MDd " -o D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\3DGSRender\x64\Debug\kernel.cu.obj "D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\kernel.cu" 
-  kernel.cu
-  test.cpp
-C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src\Core\arch\Default\Half.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  (编译源文件“test.cpp”)
+  D:\JNProject\Code\3DGS\the_gaussian\3DGSRender>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "D:\VisualStudio\VC\Tools\MSVC\14.39.33519\bin\HostX64\x64" -x cu   -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\include"  -G   --keep-dir 3DGSRender\x64\Debug  -maxrregcount=0  --machine 64 --compile -cudart static  -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -DBOOST_USE_WINDOWS_H -DNOMINMAX -D_CRT_SECURE_NO_DEPRECATE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Fd3DGSRender\x64\Debug\vc143.pdb /FS /Zi /RTC1 /MDd " -o D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\3DGSRender\x64\Debug\forward.cu.obj "D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\forward.cu" 
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/Default/Half.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/Default/BFloat16.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/GPU/PacketMath.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/Default/GenericPacketMathFunctions.h(676): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
   
-C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src\Core\arch\Default\BFloat16.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  (编译源文件“test.cpp”)
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
   
-C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src\Core\arch\Default\GenericPacketMathFunctions.h(676,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  (编译源文件“test.cpp”)
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
   
-C:\Program Files\PCL 1.14.1\include\pcl-1.14\pcl\visualization\interactor_style.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  (编译源文件“test.cpp”)
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
   
-C:\Program Files\PCL 1.14.1\include\pcl-1.14\pcl\visualization\pcl_visualizer.h(1603,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  (编译源文件“test.cpp”)
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
   
-C:\Program Files\PCL 1.14.1\3rdParty\VTK\include\vtk-9.3\vtkPolyDataMapper.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  (编译源文件“test.cpp”)
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
   
-C:\Program Files\PCL 1.14.1\include\pcl-1.14\pcl\octree\impl\octree_pointcloud.hpp(522,50): warning C4805: “|”: 在操作中将类型“int”与类型“bool”混合不安全
-  (编译源文件“test.cpp”)
-  C:\Program Files\PCL 1.14.1\include\pcl-1.14\pcl\octree\impl\octree_pointcloud.hpp(522,50):
-  模板实例化上下文(最早的实例化上下文)为
-  	D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\test.cpp(23,53):
-  	查看对正在编译的 类 模板 实例化“pcl::octree::OctreePointCloudSearch<pcl::PointXYZ,pcl::octree::OctreeContainerPointIndices,pcl::octree::OctreeContainerEmpty>”的引用
-  	C:\Program Files\PCL 1.14.1\include\pcl-1.14\pcl\octree\octree_search.h(58,10):
-  	查看对正在编译的 类 模板 实例化“pcl::octree::OctreePointCloud<PointT,LeafContainerT,BranchContainerT,pcl::octree::OctreeBase<LeafContainerT,BranchContainerT>>”的引用
-          with
-          [
-              PointT=pcl::PointXYZ,
-              LeafContainerT=pcl::octree::OctreeContainerPointIndices,
-              BranchContainerT=pcl::octree::OctreeContainerEmpty
-          ]
-  	C:\Program Files\PCL 1.14.1\include\pcl-1.14\pcl\octree\impl\octree_pointcloud.hpp(55,1):
-  	在编译 类 模板 成员函数“pcl::octree::OctreePointCloud<PointT,LeafContainerT,BranchContainerT,pcl::octree::OctreeBase<LeafContainerT,BranchContainerT>>::OctreePointCloud(const double)”时
-          with
-          [
-              PointT=pcl::PointXYZ,
-              LeafContainerT=pcl::octree::OctreeContainerPointIndices,
-              BranchContainerT=pcl::octree::OctreeContainerEmpty
-          ]
-  		C:\Program Files\PCL 1.14.1\include\pcl-1.14\pcl\octree\octree_search.h(85,63):
-  		请参阅 "pcl::octree::OctreePointCloudSearch<pcl::PointXYZ,pcl::octree::OctreeContainerPointIndices,pcl::octree::OctreeContainerEmpty>::OctreePointCloudSearch" 中对 "pcl::octree::OctreePointCloud<PointT,LeafContainerT,BranchContainerT,pcl::octree::OctreeBase<LeafContainerT,BranchContainerT>>::OctreePointCloud" 的第一个引用
-          with
-          [
-              PointT=pcl::PointXYZ,
-              LeafContainerT=pcl::octree::OctreeContainerPointIndices,
-              BranchContainerT=pcl::octree::OctreeContainerEmpty
-          ]
-  		D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\test.cpp(23,59):
-  		请参阅 "main" 中对 "pcl::octree::OctreePointCloudSearch<pcl::PointXYZ,pcl::octree::OctreeContainerPointIndices,pcl::octree::OctreeContainerEmpty>::OctreePointCloudSearch" 的第一个引用
-  	C:\Program Files\PCL 1.14.1\include\pcl-1.14\pcl\octree\impl\octree_pointcloud.hpp(494,1):
-  	在编译 类 模板 成员函数“void pcl::octree::OctreePointCloud<PointT,LeafContainerT,BranchContainerT,pcl::octree::OctreeBase<LeafContainerT,BranchContainerT>>::adoptBoundingBoxToPoint(const PointT &)”时
-          with
-          [
-              PointT=pcl::PointXYZ,
-              LeafContainerT=pcl::octree::OctreeContainerPointIndices,
-              BranchContainerT=pcl::octree::OctreeContainerEmpty
-          ]
-  		C:\Program Files\PCL 1.14.1\include\pcl-1.14\pcl\octree\impl\octree_pointcloud.hpp(645,26):
-  		请参阅 "pcl::octree::OctreePointCloud<PointT,LeafContainerT,BranchContainerT,pcl::octree::OctreeBase<LeafContainerT,BranchContainerT>>::addPointIdx" 中对 "pcl::octree::OctreePointCloud<PointT,LeafContainerT,BranchContainerT,pcl::octree::OctreeBase<LeafContainerT,BranchContainerT>>::adoptBoundingBoxToPoint" 的第一个引用
-          with
-          [
-              PointT=pcl::PointXYZ,
-              LeafContainerT=pcl::octree::OctreeContainerPointIndices,
-              BranchContainerT=pcl::octree::OctreeContainerEmpty
-          ]
-  		C:\Program Files\PCL 1.14.1\include\pcl-1.14\pcl\octree\impl\octree_pointcloud.hpp(85,26):
-  		请参阅 "pcl::octree::OctreePointCloud<PointT,LeafContainerT,BranchContainerT,pcl::octree::OctreeBase<LeafContainerT,BranchContainerT>>::addPointsFromInputCloud" 中对 "pcl::octree::OctreePointCloud<PointT,LeafContainerT,BranchContainerT,pcl::octree::OctreeBase<LeafContainerT,BranchContainerT>>::addPointIdx" 的第一个引用
-          with
-          [
-              PointT=pcl::PointXYZ,
-              LeafContainerT=pcl::octree::OctreeContainerPointIndices,
-              BranchContainerT=pcl::octree::OctreeContainerEmpty
-          ]
-  		D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\test.cpp(25,32):
-  		请参阅 "main" 中对 "pcl::octree::OctreePointCloud<PointT,LeafContainerT,BranchContainerT,pcl::octree::OctreeBase<LeafContainerT,BranchContainerT>>::addPointsFromInputCloud" 的第一个引用
-          with
-          [
-              PointT=pcl::PointXYZ,
-              LeafContainerT=pcl::octree::OctreeContainerPointIndices,
-              BranchContainerT=pcl::octree::OctreeContainerEmpty
-          ]
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
   
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1535): warning #20013-D: calling a constexpr __host__ function("real") from a __host__ __device__ function("abs") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1535): warning #20013-D: calling a constexpr __host__ function("imag") from a __host__ __device__ function("abs") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1535): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1535): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1540): warning #20013-D: calling a constexpr __host__ function("real") from a __host__ __device__ function("abs") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1540): warning #20013-D: calling a constexpr __host__ function("imag") from a __host__ __device__ function("abs") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1540): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1540): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1564): warning #20013-D: calling a constexpr __host__ function("real") from a __host__ __device__ function("exp") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1565): warning #20013-D: calling a constexpr __host__ function("imag") from a __host__ __device__ function("exp") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1566): warning #20013-D: calling a constexpr __host__ function("imag") from a __host__ __device__ function("exp") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1564): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1565): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1566): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1567): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1572): warning #20013-D: calling a constexpr __host__ function("real") from a __host__ __device__ function("exp") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1573): warning #20013-D: calling a constexpr __host__ function("imag") from a __host__ __device__ function("exp") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1574): warning #20013-D: calling a constexpr __host__ function("imag") from a __host__ __device__ function("exp") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1572): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1573): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1574): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(1575): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(223): warning #20012-D: __host__ annotation is ignored on a function("DenseStorage") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(223): warning #20012-D: __device__ annotation is ignored on a function("DenseStorage") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(233): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(233): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(248): warning #20012-D: __host__ annotation is ignored on a function("DenseStorage") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(248): warning #20012-D: __device__ annotation is ignored on a function("DenseStorage") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(249): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(249): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(110): warning #20013-D: calling a constexpr __host__ function("real") from a __host__ __device__ function("run") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during:
+              instantiation of "T Eigen::internal::real_impl<std::complex<T>>::run(const std::complex<T> &) [with T=float]" 
+  (1232): here
+              instantiation of "Eigen::internal::real_retval<Eigen::internal::global_math_functions_filtering_base<Scalar, void>::type>::type Eigen::numext::real(const Scalar &) [with Scalar=std::complex<float>]" 
+  C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(110): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during:
+              instantiation of "T Eigen::internal::real_impl<std::complex<T>>::run(const std::complex<T> &) [with T=float]" 
+  (1232): here
+              instantiation of "Eigen::internal::real_retval<Eigen::internal::global_math_functions_filtering_base<Scalar, void>::type>::type Eigen::numext::real(const Scalar &) [with Scalar=std::complex<float>]" 
+  C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(158): warning #20013-D: calling a constexpr __host__ function("imag") from a __host__ __device__ function("run") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during:
+              instantiation of "T Eigen::internal::imag_impl<std::complex<T>>::run(const std::complex<T> &) [with T=float]" 
+  (1253): here
+              instantiation of "Eigen::internal::imag_retval<Eigen::internal::global_math_functions_filtering_base<Scalar, void>::type>::type Eigen::numext::imag(const Scalar &) [with Scalar=std::complex<float>]" 
+  C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(158): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during:
+              instantiation of "T Eigen::internal::imag_impl<std::complex<T>>::run(const std::complex<T> &) [with T=float]" 
+  (1253): here
+              instantiation of "Eigen::internal::imag_retval<Eigen::internal::global_math_functions_filtering_base<Scalar, void>::type>::type Eigen::numext::imag(const Scalar &) [with Scalar=std::complex<float>]" 
+  C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(234): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(58): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during instantiation of "std::complex<T> Eigen::complex_operator_detail::complex_multiply(const std::complex<T> &, const std::complex<T> &) [with T=float]" 
+  (234): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(71): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during:
+              instantiation of "std::complex<T> Eigen::complex_operator_detail::complex_divide_fast(const std::complex<T> &, const std::complex<T> &) [with T=float]" 
+  (96): here
+              instantiation of "std::complex<T> Eigen::complex_operator_detail::complex_divide(const std::complex<T> &, const std::complex<T> &) [with T=float]" 
+  (234): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(110): warning #20013-D: calling a constexpr __host__ function("real") from a __host__ __device__ function("run") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during:
+              instantiation of "T Eigen::internal::real_impl<std::complex<T>>::run(const std::complex<T> &) [with T=double]" 
+  (1232): here
+              instantiation of "Eigen::internal::real_retval<Eigen::internal::global_math_functions_filtering_base<Scalar, void>::type>::type Eigen::numext::real(const Scalar &) [with Scalar=std::complex<double>]" 
+  C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(110): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during:
+              instantiation of "T Eigen::internal::real_impl<std::complex<T>>::run(const std::complex<T> &) [with T=double]" 
+  (1232): here
+              instantiation of "Eigen::internal::real_retval<Eigen::internal::global_math_functions_filtering_base<Scalar, void>::type>::type Eigen::numext::real(const Scalar &) [with Scalar=std::complex<double>]" 
+  C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(158): warning #20013-D: calling a constexpr __host__ function("imag") from a __host__ __device__ function("run") is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during:
+              instantiation of "T Eigen::internal::imag_impl<std::complex<T>>::run(const std::complex<T> &) [with T=double]" 
+  (1253): here
+              instantiation of "Eigen::internal::imag_retval<Eigen::internal::global_math_functions_filtering_base<Scalar, void>::type>::type Eigen::numext::imag(const Scalar &) [with Scalar=std::complex<double>]" 
+  C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/MathFunctions.h(158): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during:
+              instantiation of "T Eigen::internal::imag_impl<std::complex<T>>::run(const std::complex<T> &) [with T=double]" 
+  (1253): here
+              instantiation of "Eigen::internal::imag_retval<Eigen::internal::global_math_functions_filtering_base<Scalar, void>::type>::type Eigen::numext::imag(const Scalar &) [with Scalar=std::complex<double>]" 
+  C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(235): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(58): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during instantiation of "std::complex<T> Eigen::complex_operator_detail::complex_multiply(const std::complex<T> &, const std::complex<T> &) [with T=double]" 
+  (235): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/CUDA/Complex.h(71): warning #20015-D: calling a constexpr __host__ function from a __host__ __device__ function is not allowed. The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+            detected during:
+              instantiation of "std::complex<T> Eigen::complex_operator_detail::complex_divide_fast(const std::complex<T> &, const std::complex<T> &) [with T=double]" 
+  (96): here
+              instantiation of "std::complex<T> Eigen::complex_operator_detail::complex_divide(const std::complex<T> &, const std::complex<T> &) [with T=double]" 
+  (235): here
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/Default/Half.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/Default/BFloat16.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/GPU/PacketMath.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/arch/Default/GenericPacketMathFunctions.h(676): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(223): warning #20012-D: __host__ annotation is ignored on a function("DenseStorage") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(223): warning #20012-D: __device__ annotation is ignored on a function("DenseStorage") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(233): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(233): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(248): warning #20012-D: __host__ annotation is ignored on a function("DenseStorage") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(248): warning #20012-D: __device__ annotation is ignored on a function("DenseStorage") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(249): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/DenseStorage.h(249): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning #20236-D: pragma "diag_suppress" is deprecated, use "nv_diag_suppress" instead
+  
+  forward.cu
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(77): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(79): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(81): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(83): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(85): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(86): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(87): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(88): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(89): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(90): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(91): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(92): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
     正在创建库 D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\x64\Debug\3DGSRender.lib 和对象 D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\x64\Debug\3DGSRender.exp
   3DGSRender.vcxproj -> D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\x64\Debug\3DGSRender.exe
