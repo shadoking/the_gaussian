@@ -31,12 +31,13 @@ __global__ void PreRenderKernel(
     // 3.中心投影
     Eigen::Map<const Eigen::Matrix<float, 4, 4, Eigen::RowMajor>> viewProjMatrixE(viewProjMatrix);
     Eigen::Vector4f projPoint = viewProjMatrixE * oriPoint;
+   /* float projPointW = 1.0f / (projPoint[3] + 0.0000001f);
+    Eigen::Vector3f projPoint = { p_hom.x * p_w, p_hom.y * p_w, p_hom.z * p_w };*/
 
-
-   /* if (pid == 1) {
+    if (projPoint[3] != 1.0) {
         printf("oriPoint: %f,%f,%f,%f\n", oriPoint[0], oriPoint[1], oriPoint[2], oriPoint[3]);
-        printf("viewPoint: %f,%f,%f,%f\n", viewPoint[0], viewPoint[1], viewPoint[2], viewPoint[3]);
-    }*/
+        printf("projPoint: %f,%f,%f,%f\n", projPoint[0], projPoint[1], projPoint[2], projPoint[3]);
+    }
     
     // 4.矩阵计算
 }

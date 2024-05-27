@@ -883,5 +883,17 @@ C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/D
 C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
 C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
 C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
-    正在创建库 D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\x64\Debug\3DGSRender.lib 和对象 D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\x64\Debug\3DGSRender.exp
+  loadPLY.cpp
+  main.cpp
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src\Core\arch\Default\Half.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src\Core\arch\Default\BFloat16.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src\Core\arch\Default\GenericPacketMathFunctions.h(676,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\main.cpp(19,37): warning C4267: “参数”: 从“size_t”转换到“const int”，可能丢失数据
+  正在生成代码...
   3DGSRender.vcxproj -> D:\JNProject\Code\3DGS\the_gaussian\3DGSRender\x64\Debug\3DGSRender.exe
