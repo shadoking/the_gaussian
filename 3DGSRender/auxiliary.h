@@ -1,4 +1,6 @@
 #pragma once
+#include <stdio.h>
+#include <string.h>
 #include <Eigen/Dense>
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"

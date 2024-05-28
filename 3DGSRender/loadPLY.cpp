@@ -96,30 +96,34 @@ void GetPointList(std::vector<Point> points,
         rotation[i * 4 + 3] = points[i].rot_3;
 
         opacity[i] = points[i].opacity;
+
+        scaling[i * 3] = points[i].scale_0;
+        scaling[i * 3 + 1] = points[i].scale_1;
+        scaling[i * 3 + 2] = points[i].scale_2;
     }
 }
 
-//[[ 0.4393, 0.2427, -0.8649, 0.0444],
-//[0.0148, 0.9607, 0.2771, -0.8329],
-//[0.8982, -0.1345, 0.4184, 3.9107],
+//[[ 0.6091, 0.1589, -0.7770, -0.1297],
+//[0.2259, 0.9044, 0.3621, -0.0375],
+//[0.7602, -0.3961, 0.5150, 4.1264],
 //[0.0000, 0.0000, 0.0000, 1.0000]]
 
 float* GetViewMatrix() {
     float* viewMatrix = new float[16];
-    viewMatrix[0] = 0.4393f;
-    viewMatrix[1] = 0.2427f;
-    viewMatrix[2] = -0.8649f;
-    viewMatrix[3] = 0.0444f;
+    viewMatrix[0] = 0.6091f;
+    viewMatrix[1] = 0.1589f;
+    viewMatrix[2] = -0.7770f;
+    viewMatrix[3] = -0.1297f;
 
-    viewMatrix[4] = 0.0148f;
-    viewMatrix[5] = 0.9607f;
-    viewMatrix[6] = 0.2771f;
-    viewMatrix[7] = -0.8329f;
+    viewMatrix[4] = 0.2259f;
+    viewMatrix[5] = 0.9044f;
+    viewMatrix[6] = 0.3621f;
+    viewMatrix[7] = -0.0375f;
 
-    viewMatrix[8] = 0.8982f;
-    viewMatrix[9] = -0.1345f;
-    viewMatrix[10] = 0.4184f;
-    viewMatrix[11] = 3.9107f;
+    viewMatrix[8] = 0.7602f;
+    viewMatrix[9] = -0.3961f;
+    viewMatrix[10] = 0.5150f;
+    viewMatrix[11] = 4.1068f;
 
     viewMatrix[12] = 0.0f;
     viewMatrix[13] = 0.0f;
@@ -129,32 +133,32 @@ float* GetViewMatrix() {
     return viewMatrix;
 }
 
-//[1.1452, 0.4476, -0.7771, -0.1142],
-//[0.4247, 2.5470, 0.3621, -0.0448],
-//[1.4293, -1.1155, 0.5150, 4.1161],
-//[0.0000, 0.0000, 0.0000, 1.0000
+//[[1.1452, 0.2988, -1.4608, -0.2439],
+//[0.6362, 2.5470, 1.0198, -0.1057],
+//[0.7603, -0.3961, 0.5150, 4.1068],
+//[0.7602, -0.3961, 0.5150, 4.1264]]
 
 float* GetViewProjMatrix() {
     float* viewProjMatrix = new float[16];
     viewProjMatrix[0] = 1.1452f;
-    viewProjMatrix[1] = 0.4476f;
-    viewProjMatrix[2] = -0.7771f;
-    viewProjMatrix[3] = -0.1142f;
+    viewProjMatrix[1] = 0.2988f;
+    viewProjMatrix[2] = -1.4608f;
+    viewProjMatrix[3] = -0.2439f;
 
-    viewProjMatrix[4] = 0.4247f;
+    viewProjMatrix[4] = 0.6362f;
     viewProjMatrix[5] = 2.5470f;
-    viewProjMatrix[6] = 0.3621f;
-    viewProjMatrix[7] = -0.0448f;
+    viewProjMatrix[6] = 1.0198f;
+    viewProjMatrix[7] = -0.1057f;
 
-    viewProjMatrix[8] = 1.4293f;
-    viewProjMatrix[9] = -1.1155f;
+    viewProjMatrix[8] = 0.7603f;
+    viewProjMatrix[9] = -0.3961f;
     viewProjMatrix[10] = 0.5150f;
-    viewProjMatrix[11] = 4.1161f;
+    viewProjMatrix[11] = 4.1068f;
 
-    viewProjMatrix[12] = 0.0f;
-    viewProjMatrix[13] = 0.0f;
-    viewProjMatrix[14] = 0.0f;
-    viewProjMatrix[15] = 1.0f;
+    viewProjMatrix[12] = 0.7602f;
+    viewProjMatrix[13] = -0.3961f;
+    viewProjMatrix[14] = 0.5150f;
+    viewProjMatrix[15] = 4.1264f;
 
     return viewProjMatrix;
 }
