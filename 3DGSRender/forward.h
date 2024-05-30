@@ -1,6 +1,11 @@
 #pragma once
 #include "auxiliary.h"
 
+struct DepthPair {
+	int idx;
+	float depth;	
+};
+
 void  PreRender(
 	const float* xyz, 
 	const float* rotation,
@@ -8,6 +13,8 @@ void  PreRender(
 
 	const float near,
 	const int N, 
+	const int width,
+	const int height,
 	const float* viewMatrix, 
 	const float* viewProjMatrix,
 	float focalX, float focalY,

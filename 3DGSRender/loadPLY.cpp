@@ -137,6 +137,11 @@ float* GetViewMatrix() {
 //[0.6362, 2.5470, 1.0198, -0.1057],
 //[0.7603, -0.3961, 0.5150, 4.1068],
 //[0.7602, -0.3961, 0.5150, 4.1264]]
+//
+//[[ 1.1452, 0.2988, -1.4608, -0.2439],
+//[0.6362, 2.5470, 1.0198, -0.1057],
+//[0.7603, -0.3961, 0.5150, 4.1168],
+//[0.7602, -0.3961, 0.5150, 4.1264]]
 
 float* GetViewProjMatrix() {
     float* viewProjMatrix = new float[16];
@@ -153,7 +158,7 @@ float* GetViewProjMatrix() {
     viewProjMatrix[8] = 0.7603f;
     viewProjMatrix[9] = -0.3961f;
     viewProjMatrix[10] = 0.5150f;
-    viewProjMatrix[11] = 4.1068f;
+    viewProjMatrix[11] = 4.1168f;
 
     viewProjMatrix[12] = 0.7602f;
     viewProjMatrix[13] = -0.3961f;

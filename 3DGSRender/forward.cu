@@ -22,6 +22,22 @@ __device__ void printMatrix2(Eigen::Matrix2f matrix, char* name) {
         matrix(1, 0), matrix(1, 1));
 }
 
+__device__ void GetTiles(Eigen::Vector2i imgPoint, float radius, Eigen::Vector2i &rectMin, Eigen::Vector2i &rectMax, dim3 grid) {
+    rectMin[0] = min(grid.x, max(0, static_cast<int>((imgPoint[0] - radius) / BLOCK_X)));
+    rectMin[1] = min(grid.y, max(0, static_cast<int>((imgPoint[1] - radius) / BLOCK_Y)));
+
+    rectMax[0] = min(grid.x, max(0, static_cast<int>((imgPoint[0] + radius + BLOCK_X - 1) / BLOCK_X)));
+    rectMax[1] = min(grid.y, max(0, static_cast<int>((imgPoint[1] + radius + BLOCK_Y - 1) / BLOCK_Y)));
+}
+
+__device__ Eigen::Vector2i Ndc2Pix(Eigen::Vector3f projPoint, int width, int height) {
+    Eigen::Vector2i pixel;
+    pixel[0] = static_cast<int>((projPoint[0] + 1) * 0.5 * width);
+    pixel[1] = static_cast<int>((1 - projPoint[1]) * 0.5 * height);
+
+    return pixel;
+}
+
 __device__ Eigen::Matrix2f ComputeCov2D(
     Eigen::Vector4f viewPoint, 
     Eigen::Matrix4f viewMatrix,
@@ -91,19 +107,22 @@ __global__ void PreRenderKernel(
 
     const float near,
     const int N,
-    //const int width,
-    //const int height,
+    const int width,
+    const int height,
     const float* viewMatrix,
     const float* viewProjMatrix,
     float focalX, float focalY,
-    float tanFovX, float tanFovY
-    
-    ) {
+    float tanFovX, float tanFovY,
+    unsigned int *tile_touched,
+    const dim3 grid) {
     // 1.计算 pid    
     int pid = blockDim.x * blockIdx.x + threadIdx.x;
     if (pid >= N) {
         return;
     }
+
+    tile_touched[pid] = 0;
+
     // 2.近平面裁剪
     Eigen::Vector4f oriPoint(xyz[pid * 3], xyz[pid * 3 + 1], xyz[pid * 3 + 2], 1.f);
     Eigen::Map<const Eigen::Matrix<float, 4, 4, Eigen::RowMajor>> viewMatrixE(viewMatrix);
@@ -115,10 +134,11 @@ __global__ void PreRenderKernel(
     // 3.中心投影
     Eigen::Map<const Eigen::Matrix<float, 4, 4, Eigen::RowMajor>> viewProjMatrixE(viewProjMatrix);
     Eigen::Vector4f projPointH = viewProjMatrixE * oriPoint;
-    Eigen::Vector3f projPoint = { projPointH[0], projPointH[1], projPointH[2] };
+    float w = 1.f / (projPointH[3] + 0.0000001f);
+    Eigen::Vector3f projPoint = { projPointH[0] * w, projPointH[1] * w, projPointH[2] * w };
 
 
-    // 4.矩阵计算
+    // 4.求协方差矩阵
     Eigen::Vector4f quat(rotation[pid * 4], rotation[pid * 4 + 1], rotation[pid * 4 + 2], rotation[pid * 4 + 3]);
     Eigen::Vector3f scal(scaling[pid * 3], scaling[pid * 3 + 1], scaling[pid * 3 + 2]);
     Eigen::Matrix3f cov3D = ComputeCov3D(quat, scal);
@@ -139,12 +159,13 @@ __global__ void PreRenderKernel(
     float lambda1 = 0.5f * (a + d) + 0.5f * sqrtf((a - d) * (a - d) + 4 * b * c);
     float radius = ceilf(3.f * sqrtf(lambda1));
 
-    // 6.tile覆盖
-    
+    // 6.tile覆盖  1记录每个tile关联几个GS 2求前缀和，得知最终组装的索引 3组装排序列表 4排序
+    Eigen::Vector2i imgPoint = Ndc2Pix(projPoint, width, height);
 
 
     if (pid == 1) {
-        printf("%f\n", radius);
+        printf("%d, %d\n", imgPoint[0], imgPoint[1]);
+        printf("%f, %f\n", projPoint[0], projPoint[1]);
         //printf("viewPoint1: %f,%f,%f,%f\n", viewPoint[0], viewPoint[1], viewPoint[2], viewPoint[3]);
         
         //printf("viewPoint2: %f,%f,%f,%f\n", viewPoint[0], viewPoint[1], viewPoint[2], viewPoint[3]);
@@ -170,6 +191,8 @@ void  PreRender(
 
     const float near, 
     const int N, 
+    const int width,
+    const int height,
     const float* viewMatrix,
     const float* viewProjMatrix,
     float focalX, float focalY,
@@ -187,19 +210,29 @@ void  PreRender(
     cudaMalloc(&d_viewProjMatrix, 16 * sizeof(float));
     cudaMemcpy(d_viewProjMatrix, viewProjMatrix, 16 * sizeof(float), cudaMemcpyHostToDevice);
 
+    unsigned int *tile_touched;
+    cudaMalloc(&tile_touched, N * sizeof(unsigned int));
+
+    dim3 grid((width + BLOCK_X - 1) / BLOCK_X, (height + BLOCK_Y - 1) / BLOCK_Y, 1);
+    dim3 block(BLOCK_X, BLOCK_Y, 1);
+
     PreRenderKernel <<<(N + 255) / 256, 256 >>> (
         d_xyz, 
         d_rotation, 
         d_scaling, 
         near, N, 
+        width, height,
         d_viewMatrix, 
         d_viewProjMatrix,
         focalX, focalY,
-        tanFovX, tanFovY);
+        tanFovX, tanFovY,
+        tile_touched,
+        grid);
 
     cudaFree(d_xyz);
     cudaFree(d_rotation);
     cudaFree(d_scaling);
     cudaFree(d_viewMatrix);
     cudaFree(d_viewProjMatrix);
+    cudaFree(tile_touched);
 }

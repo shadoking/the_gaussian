@@ -5,6 +5,18 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
+
+#define BLOCK_X 16
+#define BLOCK_Y 16
+
+int max(int a, int b) {
+	return (a < b) ? b : a;
+}
+
+int min(int a, int b) {
+	return (a < b) ? a : b;
+}
+
 #define CHECK_CUDA(A, debug) \
 A; if(debug) { \
 auto ret = cudaDeviceSynchronize(); \
