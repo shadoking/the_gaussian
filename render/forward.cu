@@ -1,4 +1,50 @@
 #include "forward.h"
+#include <fstream>
+
+template <typename T>
+void SaveFile(T* d_data, size_t size, const std::string& filename) {
+    T* h_data = new T[size];
+    cudaMemcpy(h_data, d_data, size * sizeof(T), cudaMemcpyDeviceToHost);
+
+    std::ofstream outFile(filename);
+    if (!outFile) {
+        std::cerr << "Unable to open file";
+        return ;
+    }
+
+    for (size_t i = 0; i < size; ++i) {
+        outFile << h_data[i] << std::endl;
+    }
+
+    delete[] h_data;
+    outFile.close();
+}
+
+uint32_t GetHigherMsb(uint32_t n) {
+    if (n == 0) {
+        return 0; 
+    }
+
+    uint32_t msb = 0;
+
+    if (n >= 1 << 16) {
+        n >>= 16; msb += 16;
+    }
+    if (n >= 1 << 8) {
+        n >>= 8;  msb += 8;
+    }
+    if (n >= 1 << 4) {
+        n >>= 4;  msb += 4;
+    }
+    if (n >= 1 << 2) {
+        n >>= 2;  msb += 2;
+    }
+    if (n >= 1 << 1) {
+        msb += 1;
+    }
+
+    return msb + 1;
+}
 
 __device__ void strConcat(char* dest, const char* src) {
     while (*dest) {
@@ -23,16 +69,20 @@ __device__ void printMatrix2(Eigen::Matrix2f matrix, char* name) {
 }
 
 __device__ void GetTiles(
-    Eigen::Vector2i imgPoint, 
+    float2 imgPoint, 
     float radius, 
-    Eigen::Vector2i &rectMin, 
-    Eigen::Vector2i &rectMax, 
+    uint2 &rectMin, 
+    uint2 &rectMax, 
     dim3 grid) {
-    rectMin[0] = min(grid.x, max(0, static_cast<int>((imgPoint[0] - radius) / BLOCK_X)));
-    rectMin[1] = min(grid.y, max(0, static_cast<int>((imgPoint[1] - radius) / BLOCK_Y)));
+    rectMin = { 
+        min(grid.x, max((int)0, (int)((imgPoint.x - radius) / BLOCK_X))),
+        min(grid.y, max((int)0, (int)((imgPoint.y - radius) / BLOCK_Y))) 
+    };
 
-    rectMax[0] = min(grid.x, max(0, static_cast<int>((imgPoint[0] + radius + BLOCK_X - 1) / BLOCK_X)));
-    rectMax[1] = min(grid.y, max(0, static_cast<int>((imgPoint[1] + radius + BLOCK_Y - 1) / BLOCK_Y)));
+    rectMax = { 
+        min(grid.x, max((int)0, (int)((imgPoint.x + radius + BLOCK_X - 1) / BLOCK_X))),
+        min(grid.y, max((int)0, (int)((imgPoint.y + radius + BLOCK_Y - 1) / BLOCK_Y))) 
+    };
 }
 
 __device__ void GetShs(Eigen::Vector3f* sh, const float* features, int idx, int M) {
@@ -92,10 +142,10 @@ __device__ Eigen::Vector3f ComputeColor(
     return rgb.array().max(0.f);
 }
 
-__device__ Eigen::Vector2i Ndc2Pix(Eigen::Vector3f projPoint, int width, int height) {
-    Eigen::Vector2i pixel;
-    pixel[0] = static_cast<int>((projPoint[0] + 1) * 0.5 * width);
-    pixel[1] = static_cast<int>((1 - projPoint[1]) * 0.5 * height);
+__device__ float2 Ndc2Pix(Eigen::Vector3f projPoint, int width, int height) {
+    float2 pixel;
+    pixel.x = (projPoint[0] + 1) * 0.5 * width;
+    pixel.y = (1 - projPoint[1]) * 0.5 * height;
 
     return pixel;
 }
@@ -149,35 +199,136 @@ __device__ Eigen::Matrix3f ComputeCov3D(Eigen::Vector4f quat, Eigen::Vector3f sc
     return cov3D;
 }
 
+void ComputeInclusiveSum(uint32_t *tileTouched, uint32_t* pointOffset, int N) {
+    void* tempStorage = nullptr;
+    size_t tempStorageSize = 0;
+    cub::DeviceScan::InclusiveSum(tempStorage, tempStorageSize, tileTouched, pointOffset, N);
+
+    cudaMalloc(&tempStorage, tempStorageSize);
+
+    cub::DeviceScan::InclusiveSum(tempStorage, tempStorageSize, tileTouched, pointOffset, N);
+
+    cudaFree(tempStorage);
+}
+
 __global__ void DuplicateWithKeys(
     int N, 
-    Eigen::Vector2i *imgXYZ, 
+    float2 *imgXY, 
     float *depth,
     float *radii, 
-    uint32_t* tileTouched,
-    dim3 grid,
-    TileDepth* tileDepthList) {
+    uint32_t* pointOffset,
+    dim3 grid, 
+    uint64_t* keysUnsorted,
+    uint32_t* valuesUnsorted) {
 
     int pid = blockDim.x * blockIdx.x + threadIdx.x;
     if (pid >= N) {
         return;
     }
     
-    uint32_t off = (pid == 0) ? 0 : tileTouched[pid - 1];
-    Eigen::Vector2i rectMin, rectMax;
-    GetTiles(imgXYZ[pid], radii[pid], rectMin, rectMax, grid);
+    if (radii[pid] > 0) {
+        uint32_t off = (pid == 0) ? 0 : pointOffset[pid - 1];
+        uint2 rectMin, rectMax;
 
-    for (int y = rectMin[1]; y < rectMax[1]; y++) {
-        for (int x = rectMin[0]; x < rectMax[0]; x++) {
-            TileDepth tileDepth;
-            tileDepth.tileId = y * grid.x + x;
-            tileDepth.depth = depth[pid];
-            tileDepth.gaussianId = pid;
+        GetTiles(imgXY[pid], radii[pid], rectMin, rectMax, grid);
 
-            tileDepthList[off] = tileDepth;
-            off++;
+        for (int y = rectMin.y; y < rectMax.y; y++) {
+            for (int x = rectMin.x; x < rectMax.x; x++) {
+                uint64_t key = y * grid.x + x;
+                key <<= 32;
+                key |= *((uint32_t*)&depth[pid]);
+                keysUnsorted[off] = key;
+                valuesUnsorted[off] = pid;
+                off++;
+            }
         }
     }
+}
+
+__global__ void IdentifyTileRanges(int numRendered, uint64_t* keysSorted, uint2* ranges) {
+    int pid = blockDim.x * blockIdx.x + threadIdx.x;
+    if (pid >= numRendered) {
+        return;
+    }
+
+    uint64_t key = keysSorted[pid];
+    uint32_t currtile = key >> 32;
+
+    if (pid == 3) {
+        printf("%u\n", currtile);
+    }
+
+    if (pid == 0) {
+        ranges[currtile].x = 0;
+    }
+    else {
+        uint32_t prevtile = keysSorted[pid - 1] >> 32;
+        if (currtile != prevtile)
+        {
+            ranges[prevtile].y = pid;
+            ranges[currtile].x = pid;
+        }
+    }
+    if (pid == numRendered - 1) {
+        ranges[currtile].y = numRendered;
+    }        
+}
+
+void ComputeSort(
+    int N, 
+    int numRendered,
+    float2* r_imgXY, 
+    float *r_depth, 
+    float *r_radii, 
+    uint32_t* pointOffset, 
+    dim3 grid,
+    uint64_t* keysSorted,
+    uint32_t* valuesSorted,
+    uint2* ranges) {
+
+    uint64_t* keysUnsorted;
+    uint32_t* valuesUnsorted;
+    cudaMalloc(&keysUnsorted, numRendered * sizeof(uint64_t));
+    cudaMalloc(&valuesUnsorted, numRendered * sizeof(uint32_t));
+
+    // 组装 depth tileId
+    DuplicateWithKeys << <(N + 255) / 256, 256 >> > 
+        (N, r_imgXY, r_depth, r_radii, pointOffset, grid, keysUnsorted, valuesUnsorted);
+
+    // 排序
+    int bit = GetHigherMsb(grid.x * grid.y);
+
+    void* tempStorage = nullptr;
+    size_t tempStorageSize = 0;
+    cub::DeviceRadixSort::SortPairs(
+        tempStorage,
+        tempStorageSize, 
+        keysUnsorted, 
+        keysSorted, 
+        valuesUnsorted,
+        valuesSorted,
+        numRendered, 0, 32 + bit);
+
+    cudaMalloc(&tempStorage, tempStorageSize);
+    
+    cub::DeviceRadixSort::SortPairs(
+        tempStorage,
+        tempStorageSize,
+        keysUnsorted,
+        keysSorted,
+        valuesUnsorted,
+        valuesSorted,
+        numRendered, 0, 32 + bit);
+
+    SaveFile(keysSorted, numRendered / 1000, "keysSorted.txt");
+    SaveFile(valuesSorted, numRendered / 1000, "valuesSorted.txt");
+
+    //IdentifyTileRanges<<<(numRendered + 255) / 256, 256 >>> 
+    //    (numRendered, keysSorted, ranges);
+
+    cudaFree(tempStorage);   
+    cudaFree(keysUnsorted);
+    cudaFree(valuesUnsorted);
 }
 
 __global__ void PreRenderKernel(
@@ -198,7 +349,7 @@ __global__ void PreRenderKernel(
     float tanFovX, float tanFovY,
     uint32_t* tileTouched,
     const dim3 grid,
-    Eigen::Vector2i* imgXYZ,
+    float2 * imgXY,
     float* depth,
     float* radii,
     float* rgb) {
@@ -247,10 +398,10 @@ __global__ void PreRenderKernel(
     float radius = ceilf(3.f * sqrtf(lambda1));
 
     // 6.tile覆盖
-    Eigen::Vector2i imgPoint = Ndc2Pix(projPoint, width, height);
-    Eigen::Vector2i rectMin, rectMax;
+    float2 imgPoint = Ndc2Pix(projPoint, width, height);
+    uint2 rectMin, rectMax;
     GetTiles(imgPoint, radius, rectMin, rectMax, grid);
-    if ((rectMax[1] - rectMin[1]) * (rectMax[0] - rectMin[0]) == 0) {
+    if (((rectMax.y - rectMin.y) * (rectMax.x - rectMin.x)) == 0) {
         return;
     }
 
@@ -264,15 +415,27 @@ __global__ void PreRenderKernel(
 
     depth[pid] = viewPoint[2];
     radii[pid] = radius;
-    imgXYZ[pid] = imgPoint;
-    tileTouched[pid] = (rectMax[1] - rectMin[1]) * (rectMax[0] - rectMin[0]);
+    imgXY[pid] = imgPoint;
+    tileTouched[pid] = (rectMax.y - rectMin.y) * (rectMax.x - rectMin.x);
 }
 
-void printStructArray(TileDepth* array, int start, int end) {
-    for (int i = start; i < end; ++i) {
-        std::cout << "gaussianId: " << array[i].gaussianId << ", tileId: " << array[i].tileId << ", depth: " << array[i].depth << std::endl;
-    }
+
+__global__ void RenderKernel(
+    uint2* __restrict__ ranges,
+    uint32_t* __restrict__ valuesSorted,
+    int width, int height,
+    float2* __restrict__ imgXY,
+    float* __restrict__ features
+    //float4* __restrict__ conic_opacity,
+    //float* __restrict__ final_T,
+    //uint32_t* __restrict__ n_contrib,
+    //const float* __restrict__ bg_color,
+    //float* __restrict__ out_color
+    ) {
+
+
 }
+
 
 void PreRender(
     const float* xyz, 
@@ -310,11 +473,11 @@ void PreRender(
     cudaMalloc(&tileTouched, N * sizeof(uint32_t));
 
     float* r_rgb, * r_depth, * r_radii;
-    Eigen::Vector2i *r_imgXYZ;
+    float2 *r_imgXY;
     cudaMalloc(&r_rgb, 3 * N * sizeof(float));
     cudaMalloc(&r_depth, N * sizeof(float));
     cudaMalloc(&r_radii, N * sizeof(float));
-    cudaMalloc(&r_imgXYZ, N * sizeof(Eigen::Vector2i));
+    cudaMalloc(&r_imgXY, N * sizeof(float2));
 
     dim3 grid((width + BLOCK_X - 1) / BLOCK_X, (height + BLOCK_Y - 1) / BLOCK_Y, 1);
     dim3 block(BLOCK_X, BLOCK_Y, 1);
@@ -335,7 +498,7 @@ void PreRender(
         tanFovX, tanFovY,
         tileTouched,
         grid,
-        r_imgXYZ,
+        r_imgXY,
         r_depth,
         r_radii,
         r_rgb);
@@ -344,28 +507,34 @@ void PreRender(
     // 1记录每个tile关联几个GS 2求前缀和，得知最终组装的索引 3组装排序列表 4排序
 
     // 求和
-    thrust::device_ptr<uint32_t> tileTouchedPtr(tileTouched);
-    thrust::inclusive_scan(tileTouchedPtr, tileTouchedPtr + N, tileTouchedPtr);
+    uint32_t* pointOffset;
+    cudaMalloc(&pointOffset, N * sizeof(uint32_t));
+    ComputeInclusiveSum(tileTouched, pointOffset, N);    
 
-    uint32_t numRendered;
-    cudaMemcpy(&numRendered, tileTouched + N - 1, sizeof(uint32_t), cudaMemcpyDeviceToHost);
 
-    TileDepth *tileDepthList;
-    cudaMalloc(&tileDepthList, numRendered * sizeof(TileDepth));
+    int numRendered;
+    cudaMemcpy(&numRendered, pointOffset + N - 1, sizeof(int), cudaMemcpyDeviceToHost);
 
-    // 组装 depth tileId
-    DuplicateWithKeys<<<(N + 255) / 256, 256>>>(N, r_imgXYZ, r_depth, r_radii, tileTouched, grid, tileDepthList);
-    
     // 排序
-    thrust::device_ptr<TileDepth> tileDepthListPtr(tileDepthList);
-    thrust::sort(tileDepthListPtr, tileDepthListPtr + numRendered);
+    uint64_t* keysSorted;
+    uint32_t* valuesSorted;
+    uint2* ranges;
+    cudaMalloc(&keysSorted, numRendered * sizeof(uint64_t));
+    cudaMalloc(&valuesSorted, numRendered * sizeof(uint32_t));
 
-    /*TileDepth* test = new TileDepth[numRendered];
-    cudaMemcpy(test, tileDepthList, numRendered * sizeof(TileDepth), cudaMemcpyDeviceToHost);
-    printStructArray(test, N - 100, N);*/
- 
+    cudaMalloc(&ranges, grid.x * grid.y * sizeof(uint2));
+    cudaMemset(ranges, 0, grid.x * grid.y * sizeof(uint2));
 
-    //delete[] test;
+    ComputeSort(N, numRendered, r_imgXY, r_depth, r_radii, pointOffset, grid, keysSorted, valuesSorted, ranges);
+
+   /* uint2* test = new uint2[grid.x * grid.y];
+    cudaMemcpy(test, ranges, grid.x * grid.y * sizeof(uint2), cudaMemcpyDeviceToHost);
+    for (int i = 0; i < 100; i++) {
+        printf("%d, %u, %u\n", i, test[i].x, test[i].y);
+    }
+    cudaFree(test);*/
+
+
     cudaFree(d_xyz);
     cudaFree(d_rotation);
     cudaFree(d_scaling);
@@ -374,9 +543,12 @@ void PreRender(
     cudaFree(d_viewProjMatrix);
     cudaFree(d_cameraCenter);
     cudaFree(tileTouched);
-    cudaFree(r_imgXYZ);
+    cudaFree(r_imgXY);
     cudaFree(r_depth);
     cudaFree(r_radii);
     cudaFree(r_rgb);
-    cudaFree(tileDepthList);
+    cudaFree(pointOffset);
+    cudaFree(keysSorted);
+    cudaFree(valuesSorted);
+    cudaFree(ranges);
 }

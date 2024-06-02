@@ -883,6 +883,4 @@ C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/D
 C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(93): warning C4068: 未知的杂注“diag_suppress”
 C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(94): warning C4068: 未知的杂注“diag_suppress”
 C:\Program Files\PCL 1.14.1\3rdParty\Eigen3\include\eigen3\Eigen\src/Core/util/DisableStupidWarnings.h(95): warning C4068: 未知的杂注“diag_suppress”
-    正在创建库 D:\JNProject\Code\3DGS\the_gaussian\render\x64\Debug\render.lib 和对象 D:\JNProject\Code\3DGS\the_gaussian\render\x64\Debug\render.exp
-LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
   render.vcxproj -> D:\JNProject\Code\3DGS\the_gaussian\render\x64\Debug\render.exe

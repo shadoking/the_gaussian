@@ -1,4 +1,5 @@
 data/
 .ipynb_checkpoints/
 render/.vs/
+render/*.txt
 __pycache__/

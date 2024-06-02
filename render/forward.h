@@ -24,19 +24,10 @@ void  PreRender(
 
 struct TileDepth {
 	int gaussianId;
-	int tileId;
-	float depth;
+	uint64_t key;
 
 	__host__ __device__
 		bool operator<(const TileDepth& other) const {
-		if (tileId < other.tileId) {
-			return true;
-		}
-		else if (tileId == other.tileId) {
-			return depth < other.depth;
-		}
-		else {
-			return false;
-		}
+			return key < other.key;
 	}
 };

@@ -1,11 +1,10 @@
 #pragma once
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
 #include <Eigen/Dense>
-#include <thrust/device_vector.h>
-#include <thrust/host_vector.h>
-#include <thrust/reduce.h>
-#include <thrust/sort.h>
+#include <cub/cub.cuh>
+#include <cub/device/device_radix_sort.cuh>
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
