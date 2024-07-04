@@ -2,7 +2,7 @@
 #include <fstream>
 
 template <typename T>
-void SaveFile(T* d_data, size_t size, const std::string& filename) {
+void SaveFile(const T* d_data, size_t size, const std::string& filename) {
     T* h_data = new T[size];
     cudaMemcpy(h_data, d_data, size * sizeof(T), cudaMemcpyDeviceToHost);
 
